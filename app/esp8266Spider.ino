@@ -285,7 +285,6 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(
 </html>
 )rawliteral";
 
-
 WebSocketsServer webSocket = WebSocketsServer(81);
 ESP8266WebServer server(80);
 
@@ -336,6 +335,7 @@ void loop() {
       }
     IntBlink =0;
    }
+
    webSocket.loop();
    server.handleClient();
    if (CommOut == "w 0 1") Move_STP(); //~~~~~~~~ Stop
@@ -343,68 +343,84 @@ void loop() {
    if (CommOut == "w 2 1") Move_BWD(); //~~~~~~~~ backward
    if (CommOut == "w 3 1") Move_LFT(); //~~~~~~~~ turn left
    if (CommOut == "w 4 1") Move_RGT(); //~~~~~~~~ turn right
+
    //~~~~~~~~ shake hand
    if (CommOut == "w 5 3"){
      lastSpeed = StepSpeed;StepSpeed = 300;
      Move_SHK();StepSpeed = lastSpeed;CommOut=lastComm;
    }
+   
    //~~~~~~~~ waving
    if (CommOut == "w 6 3"){
      lastSpeed = StepSpeed;StepSpeed = 300;
      Move_WAV();StepSpeed = lastSpeed;CommOut=lastComm;
    }
+   
    //~~~~~~~~ pos initial
    if (CommOut == "w 15") {
     Pos_INT();CommOut=lastComm;
    }
+   
    //~~~~~~~~ pos service
    if (CommOut == "w 12") {
     Pos_SRV();CommOut=lastComm;
    }
+   
    //~~~~~~~~ adjust body left
    if (CommOut == "w 11 5") {
     Adj_LF();CommOut=lastComm;
    }
+   
    //~~~~~~~~ adjust body right
    if (CommOut == "w 10 5") {
     Adj_RG();CommOut=lastComm;
    }
+   
    //~~~~~~~~ adjust head up
    if (CommOut == "w 8 5") {
     Adj_HU();CommOut=lastComm;
    }
+   
    //~~~~~~~~ adjust head down
    if (CommOut == "w 9 5") {
     Adj_HD();CommOut=lastComm;
    }
+   
    //~~~~~~~~ adjust body higher
    if (CommOut == "w 13") {
     Adj_HG();CommOut=lastComm;
    }
+   
    //~~~~~~~~ adjust body lower
    if (CommOut == "w 14") {
     Adj_LW();CommOut=lastComm;
    }
+   
    //~~~~~~~~ adjust twist left
    if (CommOut == "w 16") {
     Adj_TL();CommOut=lastComm;
    }
+   
    //~~~~~~~~ adjust twist right
    if (CommOut == "w 17") {
     Adj_TR();CommOut=lastComm;
    }
+   
    //~~~~~~~~ adjust speed walk
    if (CommOut == "w 0 0") {
     StepSpeed = 300;CommOut=lastComm;
    }
+   
    //~~~~~~~~ adjust speed run
    if (CommOut == "w 7 1") {
     StepSpeed = 50;CommOut=lastComm;
    }
+   
    //~~~~~~~  claw close
    if (CommOut == "w 20") {
     ClwCls();CommOut=lastComm;
    }
+   
    //~~~~~~~~~~~ claw open
    if (CommOut == "w 21") {
     ClwOpn();CommOut=lastComm;
@@ -461,7 +477,6 @@ void wait_serial_return_ok()
   //  if(TimeOut > 800000) break;
   }
 }
-
 
 //================================================================================= Servo Move =======================================================================
 //~~~~~~~~ claw open
