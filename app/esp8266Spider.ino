@@ -12,8 +12,8 @@ int StaBlink=0; int IntBlink=0;
 int ClawPos=1500;
 
 //SSID and Password to your ESP Access Point
-const char* ssid = "K9999";
-const char* password = "123456789123456789";
+const char* ssid = "SPIDER8266";
+const char* password = "251366251366";
 
 static const char PROGMEM INDEX_HTML[] = R"rawliteral(
 <!DOCTYPE html>
@@ -107,7 +107,7 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(
     &nbsp;
     <table width="100%" border="1">
         <tr>
-            <td bgcolor="#FFFF33" id="JD">Quadruped Controller</td>
+            <td bgcolor="#FFFF33" id="JD">ESPE2866-SPIDER Controller</td>
         </tr>
     </table>
     <table width="100" height="249" border="0" align="center">
@@ -280,7 +280,7 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(
             </td>
         </tr>
     </table>
-    <p class="foot">this application requires Mwilmar Quadruped platform.</p>
+    <p class="foot">this application for ESP8266 - SPIDER.</p>
 </body>
 </html>
 )rawliteral";
